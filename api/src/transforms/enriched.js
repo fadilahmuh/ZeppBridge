@@ -235,8 +235,27 @@ export function buildLatestSummary(w) {
   };
 }
 
+const SPORT_NAMES = {
+  run: 'Outdoor Running',
+  trail_running: 'Trail Running',
+  treadmill: 'Treadmill',
+  walking: 'Outdoor Walking',
+  ride: 'Outdoor Cycling',
+  strength: 'Strength Training',
+  padel: 'Padel',
+  badminton: 'Badminton',
+};
+
 export function buildEnrichedWorkout(w) {
+  const sportName = SPORT_NAMES[w.workout_type] || w.workout_type || 'Workout';
+  const trackIdNum = Number(w.workout_id);
   return {
+    track_id: Number.isFinite(trackIdNum) ? trackIdNum : w.workout_id,
+    title: sportName,
+    sport_type: w.zepp_type ?? null,
+    sport_name: sportName,
+    start_time: formatIsoUtc(w.start_time),
+    start_time_local: formatLocalTime(w.start_time),
     core_execution: buildCoreExecution(w),
     environmental_terrain: buildEnvironmentalTerrain(w),
     readiness_stress: buildReadinessStress(w),
