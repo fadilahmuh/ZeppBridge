@@ -1,0 +1,31 @@
+services:
+  zeppbridge:
+    image: zeppbridge:latest
+    container_name: zeppbridge
+    restart: unless-stopped
+    volumes:
+      - zeppbridge_data:/data
+    environment:
+      - ZEPPBRIDGE_APP_TOKEN=WQ...
+      - ZEPPBRIDGE_DATA_DIR=/data
+      - TZ=Asia/Jakarta
+
+  zeppbridge-api:
+    build: ./api
+    container_name: zeppbridge-api
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - zeppbridge_data:/data:ro
+    environment:
+      - PORT=8080
+      - DB_PATH=/data/zepp.db
+      - API_KEY=
+      - TZ=Asia/Jakarta
+    depends_on:
+      - zeppbridge
+
+volumes:
+  zeppbridge_data:
+    external: true
