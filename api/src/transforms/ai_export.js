@@ -777,8 +777,8 @@ export function buildAiContext({ days = 7, from, to } = {}) {
   lines.push('');
 
   // 7. AI Coach guidelines & workout plan schema (zeppbridge-plan/3)
-  lines.push(AI_COACH_GUIDELINES_TEXT);
-  lines.push('');
+  // lines.push(AI_COACH_GUIDELINES_TEXT);
+  // lines.push('');
 
   const markdown = lines.join('\n');
 
@@ -806,7 +806,7 @@ export function buildAiContext({ days = 7, from, to } = {}) {
     ai_coach_guidelines: {
       plan_schema: PLAN_SCHEMA,
       supported_sports: ['running', 'cycling', 'pool_swim', 'open_water_swim'],
-      instructions: AI_COACH_GUIDELINES_TEXT,
+      // instructions: AI_COACH_GUIDELINES_TEXT,
     },
   };
 
