@@ -1,0 +1,98 @@
+{
+  "track_id": 1793485609,
+  "title": "Outdoor Running",
+  "sport_type": 1,
+  "sport_name": "Outdoor Running",
+  "start_time": "2026-10-31T22:26:49Z",
+  "start_time_local": "2026-11-01 05:26:49",
+  "core_execution": {
+    "total_distance_m": 15025.8,
+    "total_distance_km": 15.03,
+    "total_distance_miles": 9.34,
+    "duration_sec": 6748,
+    "duration_formatted": "01:52:28",
+    "avg_pace_formatted": "7:29 /km",
+    "avg_pace_miles_formatted": "12:03 /mi",
+    "avg_pace_sec_km": 449.1,
+    "avg_hr": 152,
+    "max_hr": 176,
+    "avg_cadence_spm": 168,
+    "max_cadence_spm": 188,
+    "avg_stride_length_cm": 79.5,
+    "calories": 1254,
+    "splits": [
+      {
+        "km": 1,
+        "distance_m": 1001.2,
+        "duration_sec": 445,
+        "pace_formatted": "7:24 /km",
+        "pace_sec_km": 444.5,
+        "avg_hr": 149,
+        "avg_cadence": 167,
+        "elevation_gain_m": 40726.8,
+        "elevation_loss_m": 20000.2
+      }
+    ],
+    "hr_zones": {
+      "relaxed": {
+        "hr_range": "<129",
+        "time": "01:12",
+        "percen": "1.1%"
+      },
+      "zone1": {
+        "hr_range": "129-141",
+        "time": "09:22",
+        "percen": "8.3%"
+      },
+      "zone2": {
+        "hr_range": "142-155",
+        "time": "01:22:45",
+        "percen": "73.6%"
+      },
+      "zone3": {
+        "hr_range": "156-169",
+        "time": "17:45",
+        "percen": "15.8%"
+      },
+      "zone4": {
+        "hr_range": "170-179",
+        "time": "01:22",
+        "percen": "1.2%"
+      },
+      "zone5": {
+        "hr_range": "180-195",
+        "time": "00:00",
+        "percen": "0.0%"
+      }
+    }
+  },
+  "environmental_terrain": {
+    "elevation_gain_m": 40732.3,
+    "elevation_loss_m": 20010.7,
+    "min_elevation_m": -39999.1,
+    "max_elevation_m": 730.77,
+    "terrain_type": "Hilly Road / Trail",
+    "weather": {}
+  },
+  "readiness_stress": {
+    "prior_night_sleep": {
+      "date_key": "2026-11-01",
+      "sleep_score": 55,
+      "total_duration": "5h 21m",
+      "total_min": 321,
+      "deep_sleep_min": 47,
+      "light_sleep_min": 191,
+      "rem_sleep_min": 59,
+      "awake_min": 24,
+      "wake_count": 10,
+      "resting_hr": 52
+    },
+    "readiness_score": 83,
+    "hrv_ms": 59,
+    "biocharge": {
+      "physical": 80.79162,
+      "mental": 58.114357
+    },
+    "subjective": {}
+  }
+}

@@ -1,0 +1,295 @@
+{
+  "info": {
+    "_postman_id": "a7f9c4e1-8b2d-4c5a-9e3f-1d2e3f4a5b6c",
+    "name": "ZeppBridge REST API",
+    "description": "Headless read-only REST API for ZeppBridge SQLite health, workout, and AI coach telemetry.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{apiKey}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "apiKey",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "workoutId",
+      "value": "1794393394",
+      "type": "string"
+    },
+    {
+      "key": "fromDate",
+      "value": "2026-11-04",
+      "type": "string"
+    },
+    {
+      "key": "toDate",
+      "value": "2026-11-10",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. System & Health",
+      "item": [
+        {
+          "name": "Health Check (Public)",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["health"]
+            }
+          }
+        },
+        {
+          "name": "Available Metrics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/metrics/available",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "metrics", "available"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Workouts",
+      "item": [
+        {
+          "name": "List Workouts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/workouts?limit=20&offset=0",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "workouts"],
+              "query": [
+                { "key": "limit", "value": "20" },
+                { "key": "offset", "value": "0" },
+                { "key": "type", "value": "running", "disabled": true },
+                { "key": "from", "value": "{{fromDate}}", "disabled": true },
+                { "key": "to", "value": "{{toDate}}", "disabled": true }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Latest Workout Summary",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/workouts/latest",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "workouts", "latest"]
+            }
+          }
+        },
+        {
+          "name": "Latest Workout (Enriched)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/workouts/latest/enriched",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "workouts", "latest", "enriched"]
+            }
+          }
+        },
+        {
+          "name": "Workout Detail by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/workouts/{{workoutId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "workouts", "{{workoutId}}"]
+            }
+          }
+        },
+        {
+          "name": "Workout Enriched by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/workouts/{{workoutId}}/enriched",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "workouts", "{{workoutId}}", "enriched"]
+            }
+          }
+        },
+        {
+          "name": "Workout Samples (5s Downsampled)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/workouts/{{workoutId}}/samples?interval=5s",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "workouts", "{{workoutId}}", "samples"],
+              "query": [
+                { "key": "interval", "value": "5s" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Workout GPS Route",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/workouts/{{workoutId}}/route",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "workouts", "{{workoutId}}", "route"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. AI Coach & Context Export",
+      "item": [
+        {
+          "name": "AI Context (Markdown)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/ai/context?days=7&format=markdown",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "ai", "context"],
+              "query": [
+                { "key": "days", "value": "7" },
+                { "key": "format", "value": "markdown" },
+                { "key": "from", "value": "{{fromDate}}", "disabled": true },
+                { "key": "to", "value": "{{toDate}}", "disabled": true }
+              ]
+            }
+          }
+        },
+        {
+          "name": "AI Context (JSON)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/ai/context?days=7&format=json",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "ai", "context"],
+              "query": [
+                { "key": "days", "value": "7" },
+                { "key": "format", "value": "json" },
+                { "key": "from", "value": "{{fromDate}}", "disabled": true },
+                { "key": "to", "value": "{{toDate}}", "disabled": true }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Dashboard & Daily Health",
+      "item": [
+        {
+          "name": "Dashboard Today",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/dashboard/today",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "dashboard", "today"]
+            }
+          }
+        },
+        {
+          "name": "Daily Metrics Range",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/daily?from={{fromDate}}&to={{toDate}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "daily"],
+              "query": [
+                { "key": "from", "value": "{{fromDate}}" },
+                { "key": "to", "value": "{{toDate}}" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Sleep Sessions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/sleep?limit=30",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "sleep"],
+              "query": [
+                { "key": "limit", "value": "30" },
+                { "key": "since", "value": "{{fromDate}}", "disabled": true }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Readiness & HRV Trends",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/readiness?days=7",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "readiness"],
+              "query": [
+                { "key": "days", "value": "7" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Personal Bests (PBs)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/stats/pbs",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "stats", "pbs"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
