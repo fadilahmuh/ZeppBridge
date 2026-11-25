@@ -74,6 +74,11 @@ try {
     const body = await res.json();
     const actualKeys = Object.keys(body).sort();
     assert.deepEqual(actualKeys, expectedKeys);
+    const zones = body.core_execution?.hr_zones;
+    if (Array.isArray(zones) && zones.length > 0) {
+      assert.equal(zones[0].zone, 0, 'HR zones should start at zone 0');
+      assert.match(zones[0].label, /^Zone 0\b/);
+    }
   });
 
   await check('GET /api/v1/ai/context?days=7 markdown contains zeppbridge.ai_task', async () => {

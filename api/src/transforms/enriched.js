@@ -71,7 +71,14 @@ function workoutSplits(workoutId) {
   });
 }
 
-const ZONE_NAMES = ['Zone 1 (Recovery)', 'Zone 2 (Endurance)', 'Zone 3 (Tempo)', 'Zone 4 (Threshold)', 'Zone 5 (Max Effort)'];
+const ZONE_NAMES = [
+  'Zone 0 (Relaxed)',
+  'Zone 1 (Recovery)',
+  'Zone 2 (Endurance)',
+  'Zone 3 (Tempo)',
+  'Zone 4 (Threshold)',
+  'Zone 5 (Max Effort)',
+];
 
 function hrZones(workoutId) {
   const rows = query(
@@ -80,8 +87,8 @@ function hrZones(workoutId) {
     workoutId,
   );
   const out = rows.map((r) => ({
-    zone: r.zone_index + 1,
-    label: ZONE_NAMES[r.zone_index] ?? `Zone ${r.zone_index + 1}`,
+    zone: r.zone_index,
+    label: ZONE_NAMES[r.zone_index] ?? `Zone ${r.zone_index}`,
     upper_bound_bpm: r.upper_bound_bpm,
     seconds: r.seconds,
   }));
